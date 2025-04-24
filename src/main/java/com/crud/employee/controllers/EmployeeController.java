@@ -1,4 +1,5 @@
 package com.crud.employee.controllers;
+
 import java.util.ArrayList;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +16,18 @@ import com.crud.employee.model.EmployeeModel;
 @RestController
 @RequestMapping("/APIrest-Employee")
 public class EmployeeController {
-    
-    
+
     @Autowired
     EmployeeService employeeService;
-    
+
     @GetMapping()
     public ArrayList<EmployeeModel> getEmployee() {
         return employeeService.getEmployee();
+    }
+
+    @GetMapping(path = "/login")
+    public String login() {
+        return "hello Admin!!";
     }
 
     @PostMapping()
@@ -33,6 +38,7 @@ public class EmployeeController {
     @GetMapping(path = "/{id}")
     public Optional<EmployeeModel> findByID(@PathVariable("id") Long id) {
         return this.employeeService.findEmployeeById(id);
+
     }
 
     @DeleteMapping(path = "/{id}")
